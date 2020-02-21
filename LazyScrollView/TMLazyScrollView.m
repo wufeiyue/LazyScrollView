@@ -408,6 +408,23 @@ void * const LazyObserverContext = "LazyObserverContext";
     [_visibleItems removeAllObjects];
 }
 
+-(void)clearVisibleItemWithView:(UIView *) view
+{
+    [view removeFromSuperview];
+    [_visibleItems removeObject: view];
+}
+
+-(void)clearVisibleItemsWithMuiId:(NSString *) muiID
+{
+    for (UIView *itemView in _visibleItems) {
+        if ([itemView.muiID isEqualToString:muiID]) {
+            [self clearVisibleItemWithView:itemView];
+            break;
+        }
+    }
+}
+
+
 - (void)removeAllLayouts
 {
     [self clearVisibleItems:YES];

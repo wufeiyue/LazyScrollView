@@ -123,8 +123,6 @@
 				927CAE322046B37700BD3B19 /* Sources */,
 				927CAE332046B37700BD3B19 /* Frameworks */,
 				927CAE342046B37700BD3B19 /* Resources */,
-				2C0A0C8EE3C249225702BEF4 /* [CP] Embed Pods Frameworks */,
-				3B42DAA9E89AC5058947BA15 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -181,36 +179,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2C0A0C8EE3C249225702BEF4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-LazyScrollViewDemo/Pods-LazyScrollViewDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3B42DAA9E89AC5058947BA15 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-LazyScrollViewDemo/Pods-LazyScrollViewDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A810AF92003E824DBE229A21 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

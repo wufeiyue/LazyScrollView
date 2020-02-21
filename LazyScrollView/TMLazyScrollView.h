@@ -92,6 +92,8 @@
 
 - (void)reloadData;
 - (void)loadMoreData;
+- (void)clearVisibleItemWithView:(nonnull UIView *) view;
+- (void)clearVisibleItemsWithMuiId:(nullable NSString *) muiID;
 
 /**
  Get reuseable item view by reuseIdentifier.
