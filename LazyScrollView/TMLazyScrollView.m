@@ -25,7 +25,8 @@ void * const LazyObserverContext = "LazyObserverContext";
 
 @interface TMLazyScrollView () {
     NSMutableSet<UIView *> *_visibleItems;
-    NSMutableSet<NSString *> *_inScreenVisibleMuiIDs;
+    NSMutableArray<NSString *> *_inScreenVisibleMuiIDs;
+//    NSMutableSet<NSNumber *> *_inScreenVisibleZPositions;
     
     // Store item models.
     TMLazyModelBucket *_modelBucket;
@@ -39,13 +40,13 @@ void * const LazyObserverContext = "LazyObserverContext";
     NSString *_currentReloadingMuiID;
     
     // Store muiID of items which should be visible.
-    NSMutableSet<NSString *> *_newVisibleMuiIDs;
+    NSMutableArray<NSString *> *_newVisibleMuiIDs;
     
     // Store muiID of items which are visible last time.
-    NSSet<NSString *> *_lastInScreenVisibleMuiIDs;
+//    NSSet<NSString *> *_lastInScreenVisibleMuiIDs;
     
     // Store the enter screen times of items.
-    NSMutableDictionary<NSString *, NSNumber *> *_enterTimesDict;
+//    NSMutableDictionary<NSString *, NSNumber *> *_enterTimesDict;
 
     // Record contentOffset of scrollView that used for calculating
     // views to show last time.
@@ -62,12 +63,14 @@ void * const LazyObserverContext = "LazyObserverContext";
 
 #pragma mark Getter & Setter
 
-- (NSSet<UIView *> *)inScreenVisibleItems
+- (NSArray<UIView *> *)inScreenVisibleItems
 {
-    NSMutableSet<UIView *> * inScreenVisibleItems = [NSMutableSet set];
-    for (UIView *view in _visibleItems) {
-        if ([_inScreenVisibleMuiIDs containsObject:view.muiID]) {
-            [inScreenVisibleItems addObject:view];
+    NSMutableArray<UIView *> * inScreenVisibleItems = [NSMutableArray array];
+    for (NSString *muiID in _inScreenVisibleMuiIDs) {
+        for (UIView *itemView in _visibleItems) {
+            if ([muiID isEqualToString:itemView.muiID]) {
+                [inScreenVisibleItems addObject:itemView];
+            }
         }
     }
     return [inScreenVisibleItems copy];
@@ -128,13 +131,13 @@ void * const LazyObserverContext = "LazyObserverContext";
         
         _visibleItems = [[NSMutableSet alloc] init];
         
-        _inScreenVisibleMuiIDs = [NSMutableSet set];
+        _inScreenVisibleMuiIDs = [NSMutableArray array];
         
         _modelBucket = [[TMLazyModelBucket alloc] initWithBucketHeight:LazyBucketHeight];
         
         _needReloadingMuiIDs = [[NSMutableSet alloc] init];
         
-        _enterTimesDict = [[NSMutableDictionary alloc] init];
+//        _enterTimesDict = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -196,7 +199,7 @@ void * const LazyObserverContext = "LazyObserverContext";
     }
 }
 
-- (void)recycleItems:(BOOL)isReload newVisibleMuiIDs:(NSSet<NSString *> *)newVisibleMuiIDs
+- (void)recycleItems:(BOOL)isReload newVisibleMuiIDs:(NSArray<NSString *> *)newVisibleMuiIDs
 {
     NSSet *visibleItemsCopy = [_visibleItems copy];
     for (UIView *itemView in visibleItemsCopy) {
@@ -225,7 +228,7 @@ void * const LazyObserverContext = "LazyObserverContext";
         return;
     }
     
-    NSString *muiID = [_newVisibleMuiIDs anyObject];
+    NSString *muiID = [_newVisibleMuiIDs firstObject];
     BOOL hasLoadAnItem = NO;
     
     // 1. Item view is not visible. We should create or reuse an item view.
@@ -270,20 +273,20 @@ void * const LazyObserverContext = "LazyObserverContext";
     // Call didEnterWithTimes.
     // didEnterWithTimes will only be called when item view enter the in screen
     // visible area, so we have to write the logic at here.
-    if ([_lastInScreenVisibleMuiIDs containsObject:muiID] == NO
-     && [_inScreenVisibleMuiIDs containsObject:muiID] == YES) {
-        for (UIView *itemView in _visibleItems) {
-            if ([itemView.muiID isEqualToString:muiID]) {
-                if ([itemView respondsToSelector:@selector(mui_didEnterWithTimes:)]) {
-                    NSInteger times = [_enterTimesDict tm_integerForKey:itemView.muiID];
-                    times++;
-                    [_enterTimesDict tm_safeSetObject:@(times) forKey:itemView.muiID];
-                    [(UIView<TMLazyItemViewProtocol> *)itemView mui_didEnterWithTimes:times];
-                }
-                break;
-            }
-        }
-    }
+//    if ([_lastInScreenVisibleMuiIDs containsObject:muiID] == NO
+//     && [_inScreenVisibleMuiIDs containsObject:muiID] == YES) {
+//        for (UIView *itemView in _visibleItems) {
+//            if ([itemView.muiID isEqualToString:muiID]) {
+//                if ([itemView respondsToSelector:@selector(mui_didEnterWithTimes:)]) {
+//                    NSInteger times = [_enterTimesDict tm_integerForKey:itemView.muiID];
+//                    times++;
+//                    [_enterTimesDict tm_safeSetObject:@(times) forKey:itemView.muiID];
+//                    [(UIView<TMLazyItemViewProtocol> *)itemView mui_didEnterWithTimes:times];
+//                }
+//                break;
+//            }
+//        }
+//    }
     
     [_newVisibleMuiIDs removeObject:muiID];
     if (_newVisibleMuiIDs.count > 0) {
@@ -303,16 +306,16 @@ void * const LazyObserverContext = "LazyObserverContext";
     // Calculate which item views should be shown.
     // Calculating will cost some time, so here is a buffer for reducing
     // times of calculating.
-    NSSet<TMLazyItemModel *> *newVisibleModels = [_modelBucket showingModelsFrom:minY - LazyBufferHeight
+    NSArray<TMLazyItemModel *> *newVisibleModels = [_modelBucket showingModelsFrom:minY - LazyBufferHeight
                                                                               to:maxY + LazyBufferHeight];
-    NSSet<NSString *> *newVisibleMuiIDs = [newVisibleModels valueForKey:@"muiID"];
+    NSArray<NSString *> *newVisibleMuiIDs = [newVisibleModels valueForKey:@"muiID"];
 
     // Find if item views are in visible area.
     // Recycle invisible item views.
     [self recycleItems:isReload newVisibleMuiIDs:newVisibleMuiIDs];
     
     // Calculate the inScreenVisibleModels.
-    _lastInScreenVisibleMuiIDs = [_inScreenVisibleMuiIDs copy];
+//    _lastInScreenVisibleMuiIDs = [_inScreenVisibleMuiIDs copy];
     [_inScreenVisibleMuiIDs removeAllObjects];
     for (TMLazyItemModel *itemModel in newVisibleModels) {
         if (itemModel.top < maxY && itemModel.bottom > minY) {
@@ -443,22 +446,21 @@ void * const LazyObserverContext = "LazyObserverContext";
     [self clearReuseItems];
 }
 
-- (void)resetItemsEnterTimes
-{
-    [_enterTimesDict removeAllObjects];
-}
+//- (void)resetItemsEnterTimes
+//{
+//    [_enterTimesDict removeAllObjects];
+//}
 
-- (void)resetViewEnterTimes
-{
-    [self resetItemsEnterTimes];
-}
+//- (void)resetViewEnterTimes
+//{
+//    [self resetItemsEnterTimes];
+//}
 
 - (void)resetAll
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(generateItems:) object:@(NO)];
     [self clearVisibleItems:NO];
     [self clearReuseItems];
-    [self resetItemsEnterTimes];
 }
 
 - (void)removeContentOffsetObserver

@@ -32,7 +32,7 @@
  This callback always is used for user action tracking. Sometimes,
  it is also used for starting timer event.
  */
-- (void)mui_didEnterWithTimes:(NSUInteger)times;
+//- (void)mui_didEnterWithTimes:(NSUInteger)times;
 /**
  Will be called if the item view leaves the visiable area.
  This callback always is used for stopping timer event.

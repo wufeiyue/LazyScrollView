@@ -26,5 +26,7 @@
  The ID MUST BE unique.
  */
 @property (nonatomic, copy) NSString *muiID;
+/// 垂直 小的在下面  大的在上面
+@property (nonatomic, assign) NSInteger zPosition;
 
 @end

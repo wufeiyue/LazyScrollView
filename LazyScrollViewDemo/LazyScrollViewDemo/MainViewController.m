@@ -8,6 +8,7 @@
 #import "MainViewController.h"
 #import "OuterViewController.h"
 #import "MoreViewController.h"
+#import "CanvasViewController.h"
 
 @interface MainViewController ()
 
@@ -21,7 +22,7 @@
 {
     if (self = [super init]) {
         self.title = @"LazyScrollDemo";
-        self.demoArray = @[@"Reuse", @"OuterScrollView", @"LoadMore", @"Async"];
+        self.demoArray = @[@"Reuse", @"OuterScrollView", @"LoadMore", @"Canvas", @"Async"];
     }
     return self;
 }
@@ -49,10 +50,13 @@
         vc = [OuterViewController new];
     } else if ([demoName isEqualToString:@"LoadMore"]) {
         vc = [MoreViewController new];
+    } else if ([demoName isEqualToString:@"Canvas"]) {
+        vc = [CanvasViewController new];
     } else {
         Class demoVcClass = NSClassFromString([demoName stringByAppendingString:@"ViewController"]);
         vc = [demoVcClass new];
     }
+        
     [self.navigationController pushViewController:vc animated:YES];
 }
 

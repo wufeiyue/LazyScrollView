@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		176813462400E540006DAF31 /* CanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 176813452400E540006DAF31 /* CanvasViewController.m */; };
+		17E6B671240163AF00E60B3A /* CanvasToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E6B670240163AF00E60B3A /* CanvasToolView.m */; };
 		9247FDBD205A9311004FB14E /* AsyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9247FDBC205A9310004FB14E /* AsyncViewController.m */; };
 		927CAE3B2046B37700BD3B19 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 927CAE3A2046B37700BD3B19 /* AppDelegate.m */; };
 		927CAE3E2046B37700BD3B19 /* ReuseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927CAE3D2046B37700BD3B19 /* ReuseViewController.m */; };
@@ -20,6 +22,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		176813442400E540006DAF31 /* CanvasViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasViewController.h; sourceTree = "<group>"; };
+		176813452400E540006DAF31 /* CanvasViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasViewController.m; sourceTree = "<group>"; };
+		17E6B66F240163AF00E60B3A /* CanvasToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasToolView.h; sourceTree = "<group>"; };
+		17E6B670240163AF00E60B3A /* CanvasToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasToolView.m; sourceTree = "<group>"; };
 		80196663B6BB20F868052CE9 /* Pods-LazyScrollViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LazyScrollViewDemo.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-LazyScrollViewDemo/Pods-LazyScrollViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		9247FDBB205A9310004FB14E /* AsyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncViewController.h; sourceTree = "<group>"; };
 		9247FDBC205A9310004FB14E /* AsyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncViewController.m; sourceTree = "<group>"; };
@@ -96,6 +102,10 @@
 				929CC56920592B1400C2870B /* MoreViewController.m */,
 				9247FDBB205A9310004FB14E /* AsyncViewController.h */,
 				9247FDBC205A9310004FB14E /* AsyncViewController.m */,
+				176813442400E540006DAF31 /* CanvasViewController.h */,
+				176813452400E540006DAF31 /* CanvasViewController.m */,
+				17E6B66F240163AF00E60B3A /* CanvasToolView.h */,
+				17E6B670240163AF00E60B3A /* CanvasToolView.m */,
 				927CAE422046B37700BD3B19 /* Assets.xcassets */,
 				927CAE442046B37700BD3B19 /* LaunchScreen.storyboard */,
 				927CAE472046B37700BD3B19 /* Info.plist */,
@@ -139,7 +149,7 @@
 		927CAE2E2046B37700BD3B19 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = tmall;
 				TargetAttributes = {
 					927CAE352046B37700BD3B19 = {
@@ -206,8 +216,10 @@
 			files = (
 				927CAE3E2046B37700BD3B19 /* ReuseViewController.m in Sources */,
 				929CC56A20592B1400C2870B /* MoreViewController.m in Sources */,
+				17E6B671240163AF00E60B3A /* CanvasToolView.m in Sources */,
 				927CAE492046B37700BD3B19 /* main.m in Sources */,
 				92F01C4A20493D9C000983CA /* OuterViewController.m in Sources */,
+				176813462400E540006DAF31 /* CanvasViewController.m in Sources */,
 				927CAE3B2046B37700BD3B19 /* AppDelegate.m in Sources */,
 				92F01C4720493C36000983CA /* MainViewController.m in Sources */,
 				9247FDBD205A9311004FB14E /* AsyncViewController.m in Sources */,
@@ -242,6 +254,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -249,6 +262,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -297,6 +311,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -304,6 +319,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

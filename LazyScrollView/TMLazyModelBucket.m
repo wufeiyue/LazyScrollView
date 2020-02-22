@@ -87,7 +87,7 @@
     [_buckets removeAllObjects];
 }
 
-- (NSSet<TMLazyItemModel *> *)showingModelsFrom:(CGFloat)startY to:(CGFloat)endY
+- (NSArray<TMLazyItemModel *> *)showingModelsFrom:(CGFloat)startY to:(CGFloat)endY
 {
     NSMutableSet *result = [NSMutableSet set];
     NSInteger startIndex = (NSInteger)floor(startY / _bucketHeight);
@@ -105,7 +105,8 @@
         }
     }
     [result minusSet:needToBeRemoved];
-    return [result copy];
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"zPosition" ascending:YES];
+    return [[result sortedArrayUsingDescriptors: @[descriptor]] copy];
 }
 
 @end

@@ -88,13 +88,17 @@
  Item views which is in the screen visible area.
  It is a sub set of "visibleItems".
  */
-@property (nonatomic, strong, readonly, nonnull) NSSet<UIView *> *inScreenVisibleItems;
+@property (nonatomic, strong, readonly, nonnull) NSArray<UIView *> *inScreenVisibleItems;
 
 - (void)reloadData;
 - (void)loadMoreData;
 - (void)clearVisibleItemWithView:(nonnull UIView *) view;
 - (void)clearVisibleItemsWithMuiId:(nullable NSString *) muiID;
 
+/// 交换两个视图的位置, 只有当两个视图都显示在当前屏幕中时, 才可以交换成功
+//- (void)exchangeItemAtMuiId:(nullable NSString *)muiID1 withItemAtMuiId:(nullable NSString *)muiID2;
+///// 移动当前视图到当前桶容器列表position的最顶部
+//- (void)moveItemToTop: (NSInteger) position;
 /**
  Get reuseable item view by reuseIdentifier.
  */
@@ -125,8 +129,8 @@
 /**
  After call this method, the times of 'didEnterWithTimes' will start from 0.
  */
-- (void)resetItemsEnterTimes;
-- (void)resetViewEnterTimes __deprecated_msg("use resetItemsEnterTimes");
+//- (void)resetItemsEnterTimes;
+//- (void)resetViewEnterTimes __deprecated_msg("use resetItemsEnterTimes");
 
 /**
  Reset the state of LazyScrollView.
