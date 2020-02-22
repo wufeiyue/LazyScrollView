@@ -26,7 +26,6 @@ void * const LazyObserverContext = "LazyObserverContext";
 @interface TMLazyScrollView () {
     NSMutableSet<UIView *> *_visibleItems;
     NSMutableArray<NSString *> *_inScreenVisibleMuiIDs;
-//    NSMutableSet<NSNumber *> *_inScreenVisibleZPositions;
     
     // Store item models.
     TMLazyModelBucket *_modelBucket;
