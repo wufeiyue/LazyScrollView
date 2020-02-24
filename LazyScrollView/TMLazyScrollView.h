@@ -88,7 +88,9 @@
  Item views which is in the screen visible area.
  It is a sub set of "visibleItems".
  */
-@property (nonatomic, strong, readonly, nonnull) NSArray<UIView *> *inScreenVisibleItems;
+@property (nonatomic, strong, readonly, nonnull) NSSet<UIView *> *inScreenVisibleItems;
+
+@property (nonatomic, strong, readonly, nonnull) NSArray<NSNumber *> *inScreenZPositions;
 
 - (void)reloadData;
 - (void)loadMoreData;
